@@ -2,7 +2,7 @@ version: '3.9'
 services:
   application:
     container_name: blog-engine
-    image: ghcr.io/eybv/blog-engine:latest
+    image: ghcr.io/eybv/blog-engine:v1.0.0
     ports:
       - '8080:8080'
       - '8443:8443'
