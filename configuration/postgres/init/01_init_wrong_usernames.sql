@@ -1,0 +1,13 @@
+INSERT INTO wrong_usernames(username) VALUES ('null');
+INSERT INTO wrong_usernames(username) VALUES ('root');
+INSERT INTO wrong_usernames(username) VALUES ('admin');
+INSERT INTO wrong_usernames(username) VALUES ('test');
+INSERT INTO wrong_usernames(username) VALUES ('guest');
+INSERT INTO wrong_usernames(username) VALUES ('info');
+INSERT INTO wrong_usernames(username) VALUES ('mysql');
+INSERT INTO wrong_usernames(username) VALUES ('user');
+INSERT INTO wrong_usernames(username) VALUES ('oracle');
+INSERT INTO wrong_usernames(username) VALUES ('ftp');
+INSERT INTO wrong_usernames(username) VALUES ('support');
+INSERT INTO wrong_usernames(username) VALUES ('moderator');
+INSERT INTO wrong_usernames(username) VALUES ('administrator');

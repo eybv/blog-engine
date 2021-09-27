@@ -1,0 +1,73 @@
+### Get admin token
+
+POST https://localhost:8443/user/login
+Content-Type: application/json
+
+{
+  "username": "test-admin-account",
+  "password": "test-password"
+}
+
+> {%
+client.global.set('token', response.body.token)
+%}
+
+### Get category list
+
+GET https://localhost:8443/category?limit=10&offset=0
+
+> {%
+client.test("Should return not empty list", function () {
+    client.assert(response.status === 200, "Response status isn't 200")
+    client.assert(response.body.length > 0, "List is empty")
+})
+%}
+
+### Create category
+
+POST https://localhost:8443/category
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "name": {{$uuid}}
+}
+
+> {%
+client.test("Should return created category", function () {
+    client.assert(response.status === 200, "Response status isn't 200")
+    client.assert(response.body.id != null, "Category ID isn't present")
+    client.assert(response.body.name != null, "Category name isn't present")
+})
+client.global.set('created-category-id', response.body.id)
+%}
+
+### Update category
+
+POST https://localhost:8443/category
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "id": {{created-category-id}},
+  "name": {{$uuid}}
+}
+
+> {%
+client.test("Should return updated category", function () {
+    client.assert(response.status === 200, "Response status isn't 200")
+    client.assert(response.body.id != null, "Category ID isn't present")
+    client.assert(response.body.name != null, "Category name isn't present")
+})
+%}
+
+### Remove category
+
+DELETE https://localhost:8443/category/{{created-category-id}}
+Authorization: Bearer {{token}}
+
+> {%
+client.test("Should respond No Content", function () {
+    client.assert(response.status === 204, "Response status isn't 204")
+})
+%}

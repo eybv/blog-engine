@@ -1,0 +1,40 @@
+plugins {
+    id 'java'
+    id 'war'
+}
+
+sourceCompatibility = '15'
+group 'com.github.eybv'
+version '1.0.0'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    implementation 'commons-logging:commons-logging:1.2'
+    implementation 'org.reflections:reflections:0.9.12'
+    implementation 'com.google.code.gson:gson:2.8.8'
+    implementation 'org.postgresql:postgresql:42.2.23'
+
+    compileOnly 'jakarta.servlet:jakarta.servlet-api:5.0.0'
+
+    implementation 'org.springframework.security:spring-security-crypto:5.5.2'
+    implementation 'org.bouncycastle:bcprov-jdk15on:1.69'
+
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
+    testCompileOnly 'org.projectlombok:lombok:1.18.20'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.20'
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
+}

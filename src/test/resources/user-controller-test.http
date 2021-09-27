@@ -1,0 +1,118 @@
+### Registration
+
+POST https://localhost:8443/user/register
+Content-Type: application/json
+
+{
+  "username": "admin",
+  "password": "password"
+}
+
+> {%
+client.test("When wrong credentials -> Should respond Bad Request", function () {
+    client.assert(response.status === 400, "Response status isn't 400")
+})
+ %}
+
+###
+
+POST https://localhost:8443/user/register
+Content-Type: application/json
+
+{
+  "username": "test-user",
+  "password": "test-password"
+}
+
+> {%
+client.test("When correct credentials -> Should return created user with token", function () {
+    client.assert(response.status === 200, "Response status isn't 200")
+    client.assert(response.body.id !== null, "User ID isn't present")
+    client.assert(response.body.username !== null, "Username isn't present")
+    client.assert(response.body.roles.length > 0, "Roles isn't present")
+    client.assert(response.body.token !== null, "Token isn't present")
+})
+%}
+
+###
+
+POST https://localhost:8443/user/register
+Content-Type: application/json
+
+{
+  "username": "test-user",
+  "password": "test-password"
+}
+
+> {%
+client.test("When duplicate username -> Should respond Bad Request", function () {
+    client.assert(response.status === 400, "Response status isn't 400")
+})
+%}
+
+### Login
+
+POST https://localhost:8443/user/login
+Content-Type: application/json
+
+{
+  "username": "test-user",
+  "password": "test-password"
+}
+
+> {%
+client.test("When correct credentials -> Should return user with token", function () {
+    client.assert(response.status === 200, "Response status isn't 200")
+    client.assert(response.body.id !== null, "User ID isn't present")
+    client.assert(response.body.username !== null, "Username isn't present")
+    client.assert(response.body.roles.length > 0, "Roles isn't present")
+    client.assert(response.body.token !== null, "Token isn't present")
+})
+client.global.set('token', response.body.token)
+%}
+
+### ADMIN SCOPE
+
+PATCH https://localhost:8443/user/1/disable
+Authorization: Bearer {{token}}
+
+> {%
+client.test("When when haven't authorities -> Should respond Forbidden", function () {
+    client.assert(response.status === 403, "Response status isn't 403")
+})
+%}
+
+###
+
+PATCH https://localhost:8443/user/1/enable
+Authorization: Bearer {{token}}
+
+> {%
+client.test("When when haven't authorities -> Should respond Forbidden", function () {
+    client.assert(response.status === 403, "Response status isn't 403")
+})
+%}
+
+###
+
+POST https://localhost:8443/user/1/role/admin
+Authorization: Bearer {{token}}
+
+> {%
+client.test("When when haven't authorities -> Should respond Forbidden", function () {
+    client.assert(response.status === 403, "Response status isn't 403")
+})
+%}
+
+###
+
+DELETE https://localhost:8443/user/1/role/admin
+Authorization: Bearer {{token}}
+
+> {%
+client.test("When when haven't authorities -> Should respond Forbidden", function () {
+    client.assert(response.status === 403, "Response status isn't 403")
+})
+%}
+
+###

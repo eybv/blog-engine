@@ -1,0 +1,98 @@
+### Get user token
+
+POST https://localhost:8443/user/login
+Content-Type: application/json
+
+{
+  "username": "test-user-account",
+  "password": "test-password"
+}
+
+> {%
+client.global.set('token', response.body.token)
+client.global.set('user-id', response.body.id)
+%}
+
+### Create post
+
+POST https://localhost:8443/post
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Some title",
+  "content": "Some content",
+  "categoryId": 1
+}
+
+> {%
+client.global.set('created-post-id', response.body.id)
+%}
+
+### Create comment
+
+POST https://localhost:8443/post/{{created-post-id}}/comment
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "content": "Some comment"
+}
+
+> {%
+client.test("Should return created comment", function () {
+    client.assert(response.status === 200, "Response status isn't 200")
+    client.assert(response.body.author.id == client.global.get('user-id'), "Author IDs are not equal")
+    client.assert(response.body.postId == client.global.get('created-post-id'), "Post IDs are not equal")
+    client.assert(response.body.content === "Some comment", "Content are not equal")
+})
+client.global.set('created-comment-id', response.body.id)
+%}
+
+### Update comment
+
+PATCH https://localhost:8443/comment/{{created-comment-id}}
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "content": "Some updated comment"
+}
+
+> {%
+client.test("Should return updated comment", function () {
+    client.assert(response.status === 200, "Response status isn't 200")
+    client.assert(response.body.id == client.global.get('created-comment-id'), "Comment IDs are not equal")
+    client.assert(response.body.author.id == client.global.get('user-id'), "Author IDs are not equal")
+    client.assert(response.body.postId == client.global.get('created-post-id'), "Post IDs are not equal")
+    client.assert(response.body.content === "Some updated comment", "Content are not equal")
+})
+%}
+
+### Get comment list by post id
+
+GET https://localhost:8443/post/{{created-post-id}}/comment
+
+> {%
+client.test("Should return list containing created comment", function () {
+    client.assert(response.status === 200, "Response status isn't 200")
+    var predicate = function (x) { return x.id == client.global.get('created-comment-id') }
+    client.assert(response.body.filter(predicate).length === 1, "Comment are not present")
+})
+%}
+
+### Delete comment
+
+DELETE https://localhost:8443/comment/{{created-comment-id}}
+Authorization: Bearer {{token}}
+
+> {%
+client.test("Should respond No Content", function () {
+    client.assert(response.status === 204, "Response status isn't 204")
+})
+%}
+
+### Delete post
+
+DELETE https://localhost:8443/post/{{created-post-id}}
+Authorization: Bearer {{token}}

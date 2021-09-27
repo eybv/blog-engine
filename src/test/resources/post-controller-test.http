@@ -1,0 +1,119 @@
+### Get user token
+
+POST https://localhost:8443/user/login
+Content-Type: application/json
+
+{
+  "username": "test-user-account",
+  "password": "test-password"
+}
+
+> {%
+client.global.set('token', response.body.token)
+client.global.set('user-id', response.body.id)
+%}
+
+### Create post
+
+POST https://localhost:8443/post
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "title": "Some title",
+  "content": "Some content",
+  "categoryId": 1
+}
+
+> {%
+client.test("Should return created post", function () {
+    client.assert(response.status === 200, "Response status isn't 200")
+    client.assert(response.body.author.id == client.global.get('user-id'), "Author IDs are not equal")
+    client.assert(response.body.category.id === 1, "Category IDs are not equal")
+    client.assert(response.body.title === "Some title", "Title are not equal")
+    client.assert(response.body.content === "Some content", "Content are not equal")
+})
+client.global.set('created-post-id', response.body.id)
+%}
+
+### Update post
+
+PATCH https://localhost:8443/post
+Content-Type: application/json
+Authorization: Bearer {{token}}
+
+{
+  "id": {{created-post-id}},
+  "title": "Some updated title",
+  "content": "Some updated content",
+  "categoryId": 1
+}
+
+> {%
+client.test("Should return updated post", function () {
+    client.assert(response.status === 200, "Response status isn't 200")
+    client.assert(response.body.id == client.global.get('created-post-id'), "Post IDs are not equal")
+    client.assert(response.body.author.id == client.global.get('user-id'), "Author IDs are not equal")
+    client.assert(response.body.category.id === 1, "Category IDs are not equal")
+    client.assert(response.body.title === "Some updated title", "Title are not equal")
+    client.assert(response.body.content === "Some updated content", "Content are not equal")
+})
+%}
+
+### Get post by id
+
+GET https://localhost:8443/post/{{created-post-id}}
+
+> {%
+client.test("Should return post", function () {
+    client.assert(response.status === 200, "Response status isn't 200")
+    client.assert(response.body.id == client.global.get('created-post-id'), "Post IDs are not equal")
+})
+%}
+
+### Get post list
+
+GET https://localhost:8443/post
+
+> {%
+client.test("Should return list containing created post", function () {
+    client.assert(response.status === 200, "Response status isn't 200")
+    var predicate = function (x) { return x.id == client.global.get('created-post-id') }
+    client.assert(response.body.filter(predicate).length === 1, "Post are not present")
+})
+%}
+
+### Get post list by category id
+
+GET https://localhost:8443/post/category/1
+
+> {%
+client.test("Should return list containing created post", function () {
+    client.assert(response.status === 200, "Response status isn't 200")
+    var predicate = function (x) { return x.id == client.global.get('created-post-id') }
+    client.assert(response.body.filter(predicate).length === 1, "Post are not present")
+})
+%}
+
+### Get post list by author id
+
+GET https://localhost:8443/post/author/{{user-id}}
+
+> {%
+client.test("Should return list containing created post", function () {
+    client.assert(response.status === 200, "Response status isn't 200")
+    var predicate = function (x) { return x.id == client.global.get('created-post-id') }
+    client.assert(response.body.filter(predicate).length === 1, "Post are not present")
+})
+%}
+
+### Delete post
+
+DELETE https://localhost:8443/post/{{created-post-id}}
+Authorization: Bearer {{token}}
+
+> {%
+client.test("Should respond No Content", function () {
+    client.assert(response.status === 204, "Response status isn't 204")
+})
+%}
