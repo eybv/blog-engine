@@ -8,7 +8,6 @@ import com.github.eybv.blog.engine.repository.PostRepository;
 
 import lombok.RequiredArgsConstructor;
 
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -82,7 +81,7 @@ public class PostService {
                 categoryService.findById(post.getCategoryId()).orElseThrow(),
                 post.getTitle(),
                 post.getContent(),
-                Timestamp.valueOf(post.getCreated()).getTime()
+                post.getCreated().toEpochMilli()
         );
     }
 

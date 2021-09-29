@@ -19,8 +19,8 @@ public class TokenRepository {
     private final RowMapper<Token> tokenRowMapper = resultSet -> new Token(
             resultSet.getString("token"),
             resultSet.getLong("user_id"),
-            resultSet.getTimestamp("created").toLocalDateTime(),
-            resultSet.getTimestamp("last_used").toLocalDateTime()
+            resultSet.getTimestamp("created").toInstant(),
+            resultSet.getTimestamp("last_used").toInstant()
     );
 
     public Optional<Token> findByValue(String value) {

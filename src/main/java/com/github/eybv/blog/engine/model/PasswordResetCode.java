@@ -1,6 +1,6 @@
 package com.github.eybv.blog.engine.model;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 import java.util.UUID;
 
 import lombok.*;
@@ -17,6 +17,6 @@ public class PasswordResetCode {
 
     private long userId;
 
-    private LocalDateTime created;
+    private Instant created;
 
 }

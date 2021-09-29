@@ -8,7 +8,6 @@ import com.github.eybv.blog.engine.repository.CommentRepository;
 
 import lombok.RequiredArgsConstructor;
 
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -63,7 +62,7 @@ public class CommentService {
                 comment.getPostId(),
                 userService.findById(comment.getAuthorId()).orElseThrow(),
                 comment.getContent(),
-                Timestamp.valueOf(comment.getCreated()).getTime()
+                comment.getCreated().toEpochMilli()
         );
     }
 

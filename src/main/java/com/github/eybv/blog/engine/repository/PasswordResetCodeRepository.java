@@ -20,7 +20,7 @@ public class PasswordResetCodeRepository {
             resultSet.getLong("id"),
             UUID.fromString(resultSet.getString("code")),
             resultSet.getLong("user_id"),
-            resultSet.getTimestamp("created").toLocalDateTime()
+            resultSet.getTimestamp("created").toInstant()
     );
 
     public Optional<PasswordResetCode> findByUserId(long userId) {

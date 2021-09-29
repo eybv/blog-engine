@@ -21,7 +21,7 @@ public class CommentRepository {
             resultSet.getLong("post_id"),
             resultSet.getLong("author_id"),
             resultSet.getString("content"),
-            resultSet.getTimestamp("created").toLocalDateTime()
+            resultSet.getTimestamp("created").toInstant()
     );
 
     public Optional<Comment> findById(long id) {

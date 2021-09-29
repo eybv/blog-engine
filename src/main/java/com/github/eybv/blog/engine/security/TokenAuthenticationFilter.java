@@ -21,7 +21,6 @@ import java.io.IOException;
 import java.time.Instant;
 import java.util.Locale;
 import java.util.Optional;
-import java.util.TimeZone;
 
 @Order(1)
 @Component
@@ -55,10 +54,7 @@ public class TokenAuthenticationFilter extends HttpFilter {
 
     private Optional<Token> removeIfExpired(Token token) {
         final var now = Instant.now().toEpochMilli();
-        final var created = token.getCreated()
-                .atZone(TimeZone.getDefault().toZoneId())
-                .toInstant()
-                .toEpochMilli();
+        final var created = token.getCreated().toEpochMilli();
         if (now - created > TOKEN_EXPIRATION_TIME_IN_SECONDS * 1000) {
             tokenService.invalidateToken(token);
             return Optional.empty();

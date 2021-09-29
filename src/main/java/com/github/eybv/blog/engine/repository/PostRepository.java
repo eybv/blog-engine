@@ -22,7 +22,7 @@ public class PostRepository {
             resultSet.getLong("category_id"),
             resultSet.getString("title"),
             resultSet.getString("content"),
-            resultSet.getTimestamp("created").toLocalDateTime()
+            resultSet.getTimestamp("created").toInstant()
     );
 
     public Optional<Post> findById(long id) {

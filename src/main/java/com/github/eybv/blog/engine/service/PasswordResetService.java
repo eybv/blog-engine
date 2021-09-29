@@ -11,7 +11,6 @@ import lombok.RequiredArgsConstructor;
 
 import java.time.Instant;
 import java.util.Optional;
-import java.util.TimeZone;
 import java.util.UUID;
 
 @Component
@@ -54,10 +53,7 @@ public class PasswordResetService {
 
     private Optional<PasswordResetCode> removeIfExpired(PasswordResetCode code) {
         final var now = Instant.now().toEpochMilli();
-        final var created = code.getCreated()
-                .atZone(TimeZone.getDefault().toZoneId())
-                .toInstant()
-                .toEpochMilli();
+        final var created = code.getCreated().toEpochMilli();
         if (now - created > RESET_CODE_EXPIRATION_TIME_IN_SECONDS * 1000) {
             passwordResetCodeRepository.remove(code);
             return Optional.empty();

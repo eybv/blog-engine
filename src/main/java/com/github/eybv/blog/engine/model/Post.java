@@ -2,7 +2,7 @@ package com.github.eybv.blog.engine.model;
 
 import lombok.*;
 
-import java.time.LocalDateTime;
+import java.time.Instant;
 
 @Getter @Setter
 @NoArgsConstructor
@@ -20,6 +20,6 @@ public class Post {
 
     private String content;
 
-    private LocalDateTime created;
+    private Instant created;
 
 }
