@@ -3,10 +3,7 @@ package com.github.eybv.blog.engine.service;
 import com.github.eybv.blog.core.annotation.Component;
 import com.github.eybv.blog.engine.dto.UserData;
 import com.github.eybv.blog.engine.dto.UserWithToken;
-import com.github.eybv.blog.engine.exception.AuthenticationException;
-import com.github.eybv.blog.engine.exception.ResourceAlreadyExists;
-import com.github.eybv.blog.engine.exception.ResourceNotFoundException;
-import com.github.eybv.blog.engine.exception.WrongCredentialsException;
+import com.github.eybv.blog.engine.exception.*;
 import com.github.eybv.blog.engine.model.User;
 import com.github.eybv.blog.engine.model.UserRole;
 import com.github.eybv.blog.engine.model.UserWithPassword;
@@ -126,6 +123,11 @@ public class UserService {
 
     public UserData removeUserRole(long userId, String role) {
         final var userRole = UserRole.valueOf("ROLE_" + role.toUpperCase(Locale.ROOT));
+
+        if (userRole.equals(UserRole.ROLE_USER)) {
+            throw new IllegalOperationException("Unable to delete role");
+        }
+
         final var user = userRepository.findById(userId)
                 .orElseThrow(() -> newUserNotFoundException(userId))
                 .getUser();
