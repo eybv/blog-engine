@@ -32,34 +32,34 @@ public class PostController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/post")
     public List<PostData> getPostList(
-            @RequestParam(value = "limit", required = false) String limit,
-            @RequestParam(value = "offset", required = false) String offset
+            @RequestParam(value = "limit", required = false) Long limit,
+            @RequestParam(value = "offset", required = false) Long offset
     ) {
-        final var limit_ = Optional.ofNullable(limit).map(Long::valueOf).orElse(DEFAULT_FETCH_LIMIT);
-        final var offset_ = Optional.ofNullable(offset).map(Long::valueOf).orElse(0L);
-        return postService.findAll(limit_, offset_);
+        limit = Optional.ofNullable(limit).orElse(DEFAULT_FETCH_LIMIT);
+        offset = Optional.ofNullable(offset).orElse(0L);
+        return postService.findAll(limit, offset);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/post/category/{id}")
     public List<PostData> getPostListByCategoryId(
             @PathVariable("id") Long categoryId,
-            @RequestParam(value = "limit", required = false) String limit,
-            @RequestParam(value = "offset", required = false) String offset
+            @RequestParam(value = "limit", required = false) Long limit,
+            @RequestParam(value = "offset", required = false) Long offset
     ) {
-        final var limit_ = Optional.ofNullable(limit).map(Long::valueOf).orElse(DEFAULT_FETCH_LIMIT);
-        final var offset_ = Optional.ofNullable(offset).map(Long::valueOf).orElse(0L);
-        return postService.findAllByCategoryId(categoryId, limit_, offset_);
+        limit = Optional.ofNullable(limit).orElse(DEFAULT_FETCH_LIMIT);
+        offset = Optional.ofNullable(offset).orElse(0L);
+        return postService.findAllByCategoryId(categoryId, limit, offset);
     }
 
     @RequestMapping(method = RequestMethod.GET, path = "/post/author/{id}")
     public List<PostData> getPostListByAuthorId(
             @PathVariable("id") Long authorId,
-            @RequestParam(value = "limit", required = false) String limit,
-            @RequestParam(value = "offset", required = false) String offset
+            @RequestParam(value = "limit", required = false) Long limit,
+            @RequestParam(value = "offset", required = false) Long offset
     ) {
-        final var limit_ = Optional.ofNullable(limit).map(Long::valueOf).orElse(DEFAULT_FETCH_LIMIT);
-        final var offset_ = Optional.ofNullable(offset).map(Long::valueOf).orElse(0L);
-        return postService.findAllByAuthorId(authorId, limit_, offset_);
+        limit = Optional.ofNullable(limit).orElse(DEFAULT_FETCH_LIMIT);
+        offset = Optional.ofNullable(offset).orElse(0L);
+        return postService.findAllByAuthorId(authorId, limit, offset);
     }
 
     @HasRole("ROLE_USER")

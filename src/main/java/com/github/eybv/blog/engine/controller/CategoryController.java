@@ -22,12 +22,12 @@ public class CategoryController {
 
     @RequestMapping(method = RequestMethod.GET, path = "/category")
     public List<CategoryData> getCategoryList(
-            @RequestParam(value = "limit", required = false) String limit,
-            @RequestParam(value = "offset", required = false) String offset
+            @RequestParam(value = "limit", required = false) Long limit,
+            @RequestParam(value = "offset", required = false) Long offset
     ) {
-        final var limit_ = Optional.ofNullable(limit).map(Long::valueOf).orElse(DEFAULT_FETCH_LIMIT);
-        final var offset_ = Optional.ofNullable(offset).map(Long::valueOf).orElse(0L);
-        return categoryService.findAll(limit_, offset_);
+        limit = Optional.ofNullable(limit).orElse(DEFAULT_FETCH_LIMIT);
+        offset = Optional.ofNullable(offset).orElse(0L);
+        return categoryService.findAll(limit, offset);
     }
 
     @HasRole("ROLE_ADMIN")

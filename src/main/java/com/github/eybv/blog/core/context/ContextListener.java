@@ -9,6 +9,7 @@ import com.github.eybv.blog.core.handler.RequestHandlerFactory;
 import com.github.eybv.blog.core.handler.SecuredRequestHandler;
 import com.github.eybv.blog.core.request.RequestMatcher;
 import com.github.eybv.blog.core.request.RequestMethod;
+import com.github.eybv.blog.core.util.ReflectionUtils;
 
 import jakarta.servlet.Filter;
 import jakarta.servlet.ServletContextEvent;
@@ -27,7 +28,6 @@ import javax.naming.InitialContext;
 import javax.sql.DataSource;
 import java.lang.reflect.Method;
 import java.lang.reflect.Parameter;
-import java.lang.reflect.ParameterizedType;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -112,9 +112,7 @@ public class ContextListener implements ServletContextListener {
         for (Parameter parameter : constructor.getParameters()) {
             final var type = parameter.getType();
             if (Collection.class.isAssignableFrom(type)) {
-                final var parametrizedType = (ParameterizedType) parameter.getParameterizedType();
-                final var parameterTypeName = parametrizedType.getActualTypeArguments()[0].getTypeName();
-                final var parameterType = Class.forName(parameterTypeName);
+                final var parameterType = ReflectionUtils.getParameterType(parameter);
                 instantiateBeanCollectionRecursively(parameterType);
                 constrictorArgs.add(getBeansWithTypeOf(parameterType));
                 continue;
