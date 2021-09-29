@@ -5,6 +5,6 @@ import com.github.eybv.blog.core.annotation.Component;
 import org.springframework.security.crypto.keygen.Base64StringKeyGenerator;
 
 @Component
-public class Base64StringKeyGeneratorProxy extends Base64StringKeyGenerator {
+public class Base64StringKeyGeneratorBean extends Base64StringKeyGenerator {
 
 }
