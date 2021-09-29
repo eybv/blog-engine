@@ -1,110 +1,111 @@
-INSERT INTO wrong_passwords(password) VALUES ('000000');
-INSERT INTO wrong_passwords(password) VALUES ('111111');
-INSERT INTO wrong_passwords(password) VALUES ('123123');
-INSERT INTO wrong_passwords(password) VALUES ('123321');
-INSERT INTO wrong_passwords(password) VALUES ('1234');
-INSERT INTO wrong_passwords(password) VALUES ('12345');
-INSERT INTO wrong_passwords(password) VALUES ('123456');
-INSERT INTO wrong_passwords(password) VALUES ('1234567');
-INSERT INTO wrong_passwords(password) VALUES ('12345678');
-INSERT INTO wrong_passwords(password) VALUES ('123456789');
-INSERT INTO wrong_passwords(password) VALUES ('1234567890');
-INSERT INTO wrong_passwords(password) VALUES ('123abc');
-INSERT INTO wrong_passwords(password) VALUES ('654321');
-INSERT INTO wrong_passwords(password) VALUES ('666666');
-INSERT INTO wrong_passwords(password) VALUES ('696969');
-INSERT INTO wrong_passwords(password) VALUES ('aaaaaa');
-INSERT INTO wrong_passwords(password) VALUES ('abc123');
-INSERT INTO wrong_passwords(password) VALUES ('alberto');
-INSERT INTO wrong_passwords(password) VALUES ('alejandra');
-INSERT INTO wrong_passwords(password) VALUES ('alejandro');
-INSERT INTO wrong_passwords(password) VALUES ('amanda');
-INSERT INTO wrong_passwords(password) VALUES ('andrea');
-INSERT INTO wrong_passwords(password) VALUES ('angel');
-INSERT INTO wrong_passwords(password) VALUES ('angels');
-INSERT INTO wrong_passwords(password) VALUES ('anthony');
-INSERT INTO wrong_passwords(password) VALUES ('asdf');
-INSERT INTO wrong_passwords(password) VALUES ('asdfasdf');
-INSERT INTO wrong_passwords(password) VALUES ('ashley');
-INSERT INTO wrong_passwords(password) VALUES ('babygirl');
-INSERT INTO wrong_passwords(password) VALUES ('baseball');
-INSERT INTO wrong_passwords(password) VALUES ('basketball');
-INSERT INTO wrong_passwords(password) VALUES ('beatriz');
-INSERT INTO wrong_passwords(password) VALUES ('blahblah');
-INSERT INTO wrong_passwords(password) VALUES ('bubbles');
-INSERT INTO wrong_passwords(password) VALUES ('buster');
-INSERT INTO wrong_passwords(password) VALUES ('butterfly');
-INSERT INTO wrong_passwords(password) VALUES ('carlos');
-INSERT INTO wrong_passwords(password) VALUES ('charlie');
-INSERT INTO wrong_passwords(password) VALUES ('cheese');
-INSERT INTO wrong_passwords(password) VALUES ('chocolate');
-INSERT INTO wrong_passwords(password) VALUES ('computer');
-INSERT INTO wrong_passwords(password) VALUES ('daniel');
-INSERT INTO wrong_passwords(password) VALUES ('diablo');
-INSERT INTO wrong_passwords(password) VALUES ('dragon');
-INSERT INTO wrong_passwords(password) VALUES ('elite');
-INSERT INTO wrong_passwords(password) VALUES ('estrella');
-INSERT INTO wrong_passwords(password) VALUES ('flower');
-INSERT INTO wrong_passwords(password) VALUES ('football');
-INSERT INTO wrong_passwords(password) VALUES ('forum');
-INSERT INTO wrong_passwords(password) VALUES ('freedom');
-INSERT INTO wrong_passwords(password) VALUES ('friends');
-INSERT INTO wrong_passwords(password) VALUES ('fuckyou');
-INSERT INTO wrong_passwords(password) VALUES ('hello');
-INSERT INTO wrong_passwords(password) VALUES ('hunter');
-INSERT INTO wrong_passwords(password) VALUES ('iloveu');
-INSERT INTO wrong_passwords(password) VALUES ('iloveyou');
-INSERT INTO wrong_passwords(password) VALUES ('internet');
-INSERT INTO wrong_passwords(password) VALUES ('jennifer');
-INSERT INTO wrong_passwords(password) VALUES ('jessica');
-INSERT INTO wrong_passwords(password) VALUES ('jesus');
-INSERT INTO wrong_passwords(password) VALUES ('jordan');
-INSERT INTO wrong_passwords(password) VALUES ('joshua');
-INSERT INTO wrong_passwords(password) VALUES ('justin');
-INSERT INTO wrong_passwords(password) VALUES ('killer');
-INSERT INTO wrong_passwords(password) VALUES ('letmein');
-INSERT INTO wrong_passwords(password) VALUES ('liverpool');
-INSERT INTO wrong_passwords(password) VALUES ('lovely');
-INSERT INTO wrong_passwords(password) VALUES ('loveme');
-INSERT INTO wrong_passwords(password) VALUES ('loveyou');
-INSERT INTO wrong_passwords(password) VALUES ('master');
-INSERT INTO wrong_passwords(password) VALUES ('matrix');
-INSERT INTO wrong_passwords(password) VALUES ('merlin');
-INSERT INTO wrong_passwords(password) VALUES ('monkey');
-INSERT INTO wrong_passwords(password) VALUES ('mustang');
-INSERT INTO wrong_passwords(password) VALUES ('nicole');
-INSERT INTO wrong_passwords(password) VALUES ('nothing');
-INSERT INTO wrong_passwords(password) VALUES ('number1');
-INSERT INTO wrong_passwords(password) VALUES ('pass');
-INSERT INTO wrong_passwords(password) VALUES ('passport');
-INSERT INTO wrong_passwords(password) VALUES ('password');
-INSERT INTO wrong_passwords(password) VALUES ('password1');
-INSERT INTO wrong_passwords(password) VALUES ('playboy');
-INSERT INTO wrong_passwords(password) VALUES ('pokemon');
-INSERT INTO wrong_passwords(password) VALUES ('pretty');
-INSERT INTO wrong_passwords(password) VALUES ('princess');
-INSERT INTO wrong_passwords(password) VALUES ('purple');
-INSERT INTO wrong_passwords(password) VALUES ('pussy');
-INSERT INTO wrong_passwords(password) VALUES ('qazwsx');
-INSERT INTO wrong_passwords(password) VALUES ('qwerty');
-INSERT INTO wrong_passwords(password) VALUES ('roberto');
-INSERT INTO wrong_passwords(password) VALUES ('sebastian');
-INSERT INTO wrong_passwords(password) VALUES ('secret');
-INSERT INTO wrong_passwords(password) VALUES ('shadow');
-INSERT INTO wrong_passwords(password) VALUES ('shit');
-INSERT INTO wrong_passwords(password) VALUES ('soccer');
-INSERT INTO wrong_passwords(password) VALUES ('starwars');
-INSERT INTO wrong_passwords(password) VALUES ('sunshine');
-INSERT INTO wrong_passwords(password) VALUES ('superman');
-INSERT INTO wrong_passwords(password) VALUES ('tequiero');
-INSERT INTO wrong_passwords(password) VALUES ('test');
-INSERT INTO wrong_passwords(password) VALUES ('testing');
-INSERT INTO wrong_passwords(password) VALUES ('trustno1');
-INSERT INTO wrong_passwords(password) VALUES ('tweety');
-INSERT INTO wrong_passwords(password) VALUES ('welcome');
-INSERT INTO wrong_passwords(password) VALUES ('westside');
-INSERT INTO wrong_passwords(password) VALUES ('whatever');
-INSERT INTO wrong_passwords(password) VALUES ('windows');
-INSERT INTO wrong_passwords(password) VALUES ('writer');
-INSERT INTO wrong_passwords(password) VALUES ('zxcvbnm');
-INSERT INTO wrong_passwords(password) VALUES ('zxczxc');
+INSERT INTO wrong_passwords(password) VALUES
+    ('000000'),
+    ('111111'),
+    ('123123'),
+    ('123321'),
+    ('1234'),
+    ('12345'),
+    ('123456'),
+    ('1234567'),
+    ('12345678'),
+    ('123456789'),
+    ('1234567890'),
+    ('123abc'),
+    ('654321'),
+    ('666666'),
+    ('696969'),
+    ('aaaaaa'),
+    ('abc123'),
+    ('alberto'),
+    ('alejandra'),
+    ('alejandro'),
+    ('amanda'),
+    ('andrea'),
+    ('angel'),
+    ('angels'),
+    ('anthony'),
+    ('asdf'),
+    ('asdfasdf'),
+    ('ashley'),
+    ('babygirl'),
+    ('baseball'),
+    ('basketball'),
+    ('beatriz'),
+    ('blahblah'),
+    ('bubbles'),
+    ('buster'),
+    ('butterfly'),
+    ('carlos'),
+    ('charlie'),
+    ('cheese'),
+    ('chocolate'),
+    ('computer'),
+    ('daniel'),
+    ('diablo'),
+    ('dragon'),
+    ('elite'),
+    ('estrella'),
+    ('flower'),
+    ('football'),
+    ('forum'),
+    ('freedom'),
+    ('friends'),
+    ('fuckyou'),
+    ('hello'),
+    ('hunter'),
+    ('iloveu'),
+    ('iloveyou'),
+    ('internet'),
+    ('jennifer'),
+    ('jessica'),
+    ('jesus'),
+    ('jordan'),
+    ('joshua'),
+    ('justin'),
+    ('killer'),
+    ('letmein'),
+    ('liverpool'),
+    ('lovely'),
+    ('loveme'),
+    ('loveyou'),
+    ('master'),
+    ('matrix'),
+    ('merlin'),
+    ('monkey'),
+    ('mustang'),
+    ('nicole'),
+    ('nothing'),
+    ('number1'),
+    ('pass'),
+    ('passport'),
+    ('password'),
+    ('password1'),
+    ('playboy'),
+    ('pokemon'),
+    ('pretty'),
+    ('princess'),
+    ('purple'),
+    ('pussy'),
+    ('qazwsx'),
+    ('qwerty'),
+    ('roberto'),
+    ('sebastian'),
+    ('secret'),
+    ('shadow'),
+    ('shit'),
+    ('soccer'),
+    ('starwars'),
+    ('sunshine'),
+    ('superman'),
+    ('tequiero'),
+    ('test'),
+    ('testing'),
+    ('trustno1'),
+    ('tweety'),
+    ('welcome'),
+    ('westside'),
+    ('whatever'),
+    ('windows'),
+    ('writer'),
+    ('zxcvbnm'),
+    ('zxczxc');
