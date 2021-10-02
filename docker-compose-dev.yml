@@ -2,7 +2,7 @@ version: '3.9'
 services:
   application:
     container_name: blog-engine
-    image: ghcr.io/eybv/blog-engine:v1.0.1
+    build: .
     ports:
       - '8080:8080'
       - '8443:8443'
@@ -21,7 +21,7 @@ services:
       - POSTGRES_PASSWORD=pswd
       - TZ=Europe/Moscow
     volumes:
-      - ./configuration/postgres/init:/docker-entrypoint-initdb.d:ro
+    - ./configuration/postgres/init:/docker-entrypoint-initdb.d:ro
     healthcheck:
       test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
       interval: 10s
